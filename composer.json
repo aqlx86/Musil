@@ -1,0 +1,30 @@
+{
+    "name": "aqlx86/musil",
+    "description": "Just a simple logger",
+    "homepage": "https://github.com/aqlx86/Musil",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arnel Labarda",
+            "email": "aqlx86@gmail.com",
+            "homepage": "https://aql.ph/",
+            "role": "Maintainer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "monolog/monolog": "^1.23",
+        "predis/predis": "^1.1"
+    },
+    "require-dev": {
+
+    },
+    "autoload": {
+        "psr-4": {
+            "Musil\\": "src/Musil/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
