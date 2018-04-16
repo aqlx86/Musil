@@ -1,6 +1,6 @@
-Introduction
+Musil
 ------------
-Musil is a simple logger that writes logs into elasticsearch.
+Simple logger for laravel that writes logs into elasticsearch.
 
 
 Installation
@@ -18,4 +18,14 @@ Musil\MusilServiceProvider::class
 
 ```
 php artisan vendor:publish --provider="Musil\MusilServiceProvider"
+```
+
+Usage
+-----
+
+```PHP
+
+musil()->info('this is an info log');
+
+musil()->debug('2 + 2 is %sum%', ['sum' => (2 + 2)]);
 ```
