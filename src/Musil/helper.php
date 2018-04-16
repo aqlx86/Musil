@@ -4,10 +4,7 @@ if (! function_exists('musil'))
 {
     function musil($channel = 'general')
     {
-        $musil = new \Musil\Musil($channel, [
-            'index' => strtolower(config('musil.index')),
-            'type' => strtolower(config('musil.type'))
-        ]);
+        $musil = new \Musil\Musil($channel, config('musil'));
 
         return $musil->logger();
     }

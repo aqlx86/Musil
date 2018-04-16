@@ -13,17 +13,7 @@ class Musil
 
     public function __construct($channel, array $options)
     {
-        $index = $options['index'];
-        $type = $options['type'];
-
-        $es_client = new Elastica\Client;
-
-        $es_handler = new ElasticSearchHandler($es_client, [
-            'index' => $index,
-            'type' => $type,
-        ]);
-
-        $es_handler->setFormatter(new ElasticaFormatter($index, $type));
+        $es_handler = $this->load_elastsearch_handler($options['elastic_index'], $options['elastic_type']);
 
         $this->logger = new Logger($channel);
         $this->logger->pushHandler($es_handler);
@@ -34,30 +24,20 @@ class Musil
         return $this->logger;
     }
 
-    public function search($term)
+    protected function load_elastsearch_handler($index, $type)
     {
+        $index = strtolower($index);
+        $type = strtolower($type);
+
         $es_client = new Elastica\Client;
-        $search = new Elastica\Search($es_client);
 
-        $search
-            ->addIndex('maxbet')
-            ->addType('logs');
+        $es_handler = new ElasticSearchHandler($es_client, [
+            'index' => $index,
+            'type' => $type,
+        ]);
 
-        $query = new Elastica\Query($term);
+        $es_handler->setFormatter(new ElasticaFormatter($index, $type));
 
-        $search->setQuery($query);
-
-        $hits = $search->search();
-
-        return $hits;
-
-        foreach ($hits as $result)
-        {
-            dd ($result);
-
-            // $result instanceof Elastica\Result
-        }
+        return $es_handler;
     }
-
-
 }

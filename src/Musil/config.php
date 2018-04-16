@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'index' => env('APP_NAME'),
-    'type' => 'logs'
+    'elastic_index' => env('APP_NAME'),
+    'elastic_type' => 'logs',
 ];
